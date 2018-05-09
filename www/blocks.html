@@ -1,0 +1,202 @@
+<div class="col-md-12 mt-2 page-title">
+    <i class="fas fa-tachometer-alt"></i><span data-i18n="common.pool_blocks"></span>
+</div>
+
+<div class="col-sm-12">
+    <div class="card mb-2 blocks-card">
+        <div class="card-header" data-i18n="[html]blocks.block-status">
+        </div>
+		<div class="card-body table-responsive">
+			<table class="table table-sm table-striped">
+				<thead>
+					<tr>
+						<th data-i18n="blocks.blocks" class="table-first-col" nowrap></th>
+						<th data-i18n="blocks.shares" nowrap></th>
+						<th data-i18n="blocks.uncle" nowrap></th>
+						<th data-i18n="blocks.orphan" nowrap></th>
+					</tr>
+				</thead>
+				<tbody id="block-status">
+				</tbody>
+			</table>
+		</div>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="card mb-2 blocks-card-tab">
+        <div class="card-header blocks-tab">
+			<button type="button" id="tab-confirm" class="btn active"><i class="blocks-tab-icon fas fa-cubes"></i> <span class="blocks-tab-label" data-i18n="blocks.confirm"></span> <span class="badge-block" id="confirm-blocks-tab">0</span></button>
+			<button type="button" id="tab-immature" class="btn"><i class="blocks-tab-icon fas fa-lock"></i> <span class="blocks-tab-label" data-i18n="blocks.immature"></span> <span class="badge-block" id="immature-blocks-tab">0</span></button>
+			<button type="button" id="tab-pending" class="btn"><i class="blocks-tab-icon fas fa-cube"></i> <span class="blocks-tab-label" data-i18n="blocks.pending"></span> <span class="badge-block-new" id="pending-blocks-tab">0</span></button>
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-sm table-striped">
+                <thead>
+                    <tr>
+                        <th data-i18n="blocks.number" class="table-first-col" nowrap></th>
+                        <th data-i18n="blocks.time" nowrap></th>
+                        <th data-i18n="blocks.round" nowrap></th>
+                        <th data-i18n="blocks.rewards" nowrap></th>
+                        <th data-i18n="blocks.hashcode" nowrap></th>
+                    </tr>
+                </thead>
+                <tbody id="block-list">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+currentPage = {
+    update: function(){
+		$("#tab-confirm").click(function() {
+			changeTab(0);
+		});
+
+		$("#tab-immature").click(function() {
+			changeTab(1);
+		});
+
+		$("#tab-pending").click(function() {
+			changeTab(2);
+		});
+
+        reloadBlocks();
+    }
+}
+
+var blocksData;
+
+function refreshBlocks(blocks) {
+    if(blocks != null) {
+        var confirm = formatCurrency(blocks.maturedTotal);
+        var immature = formatCurrency(blocks.immatureTotal);
+        var pending = formatCurrency(blocks.candidatesTotal);
+
+        $("#confirm-blocks-tab").html(confirm);
+        $("#immature-blocks-tab").html(immature);
+        $("#pending-blocks-tab").html(pending);
+
+        var tbody = $("#block-status");
+        tbody.html("");
+        var html = "";
+
+        for (var index in blocks.luck) {
+            data = blocks.luck[index];
+
+            var luckRate = parseInt(data.luck * 100);
+            var uncleRate = parseInt(data.uncleRate * 100);
+            var orphanRate = parseInt(data.orphanRate * 100);
+
+            html += "<tr>" +
+                "<td class=\"table-first-col\">" + index + "</td>" +
+                "<td>" + luckRate + "%</td>" +
+                "<td>" + uncleRate + "%</td>" +
+                "<td>" + orphanRate + "%</td>" +
+                "</tr>"
+        }
+        tbody.html(html);
+
+        blocksData = blocks;
+        setBlocksList();
+    }
+}
+
+var currentTab = 0;
+
+function changeTab(tab) {
+    currentTab = tab;
+
+    if(tab == 0) $("#tab-confirm").addClass("active");
+    else $("#tab-confirm").removeClass("active");
+
+    if(tab == 1) $("#tab-immature").addClass("active");
+    else $("#tab-immature").removeClass("active");
+
+    if(tab == 2) $("#tab-pending").addClass("active");
+    else $("#tab-pending").removeClass("active");
+
+    setBlocksList();
+}
+
+function setBlocksList() {
+    if(blocksData == null) return;
+
+    var blocks;
+    switch (currentTab) {
+        case 0:
+            blocks = blocksData.matured;
+            break;
+        case 1:
+            blocks = blocksData.immature;
+            break;
+        case 2:
+            blocks = blocksData.candidates;
+            break;
+    }
+
+    if(blocks == null) return;
+
+    var tbody = $("#block-list");
+    var html = "";
+
+    for (var index in blocks) {
+        data = blocks[index];
+        var height = data.height;
+        var isUncle = data.uncle;
+        var isOrphan = data.orphan;
+        var uncleHeight = data.uncleHeight;
+        var hash = data.hash;
+        var reward = weiToEther(data.reward, 5);
+        var variance = parseInt(data.shares / data.difficulty * 100);
+        var date = new Date(data.timestamp * 1000);
+        var heightStr = "";
+
+        if(currentTab == 2) {
+            hash = "";
+            reward = "";
+            heightStr = "<a href=\"" + explorerBlock + height + "\">" + formatCurrency(height) + "</a>";
+        }
+        else {
+            if(isOrphan) {
+                hash = "";
+                reward = "<span class=\"badge badge-danger\">Orphan</span>";
+                variance = "";
+            }
+            else {
+                if(isUncle) {
+                    reward = "<span class=\"badge badge-secondary\">" + reward + "</span>";
+                    heightStr = "<a href=\"" + explorerUncle + height + "\" target=\"_blank\">" + formatCurrency(height) + "</a>";
+                    hash = "<a href=\"" + explorerUncle + height + "\" target=\"_blank\">" + hash + "</a>";
+                }
+                else {
+                    reward = "<span class=\"badge badge-success\">" + reward + "</span>";
+                    heightStr = "<a href=\"" + explorerBlock + height + "\" target=\"_blank\">" + formatCurrency(height) + "</a>";
+                    hash = "<a href=\"" + explorerBlock + height + "\" target=\"_blank\">" + hash + "</a>";
+                }
+            }
+        }
+
+        if(!isOrphan) {
+            variance =
+                variance <= 100 ?
+                    "<span class=\"badge badge-success\">" + variance + "%</span>" :
+                    "<span class=\"badge badge-info\">" + variance + "%</span>";
+        }
+
+        var htmlrow = "<tr id=\"block-" + height + "\">" +
+            "<td class=\"table-first-col\">" + heightStr + "</td>" +
+            "<td nowrap>" + date.toLocaleString() + "</td>" +
+            "<td>" + variance + "</td>" +
+            "<td>" + reward + "</td>" +
+            "<td class=\"hash-text\">" + hash + "</td>" +
+            "</tr>";
+
+        html += htmlrow;
+    }
+
+    tbody.html(html);
+}
+</script>

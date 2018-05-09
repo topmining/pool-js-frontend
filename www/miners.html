@@ -1,0 +1,79 @@
+<div class="col-md-12 mt-2 page-title">
+    <i class="fa fa-users"></i><apan data-i18n="common.miners"></apan>
+</div>
+
+<div class="col-sm-12">
+    <div class="card mb-2 blocks-card">
+        <div class="card-header">
+            <span data-i18n="[html]miners.miners"></span>
+        </div>
+        <div class="card-body">
+            <table class="table table-sm table-striped fixed-table">
+                <thead>
+                    <tr>
+                        <th class="fixed-table-col" data-i18n="miners.wallet-addr"></th>
+                        <th width="90" data-i18n="miners.hash"></th>
+                        <th width="180" data-i18n="miners.last-beat"></th>
+                    </tr>
+                </thead>
+                <tbody id="miner-list">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+currentPage = {
+    update: function(){
+        reloadMiners();
+    }
+}
+
+function refreshStats(stats) {
+    if(stats != null) {
+        var immatureTotal = stats.immatureTotal + stats.candidatesTotal;
+        $("#immature-blocks").html(immatureTotal);
+    }
+}
+
+function refreshMiners(miners) {
+    if(miners != null) {
+        var datas = [];
+        var i = 0;
+        for (var account in miners.miners) {
+            datas[i] = miners.miners[account];
+            datas[i].account = account;
+            i++;
+        }
+
+        datas = datas.sort((a, b) => { return a.hr < b.hr ? 1 : a.hr > b.hr ? -1 : 0; });
+
+        var tbody = $("#miner-list");
+        var html = "";
+
+        for (var index in datas) {
+            data = datas[index];
+
+            var account = data.account;
+            var date = new Date(data.lastBeat * 1000);
+            var hash = formatHashrate(data.hr);
+            var offline = data.offline;
+
+            var addrStr = "<a href=\"#/account/" + account + "\" onclick=\"location.reload();\">" + account + "</a>";
+            var unlink = offline ? "<i class=\"fas fa-unlink\"></i> " : "";
+            var background = offline ? " class=\"table-warning\"" : "";
+
+            var htmlrow = "<tr " + background + ">" +
+                "<td class=\"table-first-col hash-text fixed-table-col\" nowrap>" + unlink + addrStr + "</td>" +
+                "<td nowrap>" + hash + "</td>" +
+                "<td nowrap>" + date.toLocaleString() + "</td>" +
+                "</tr>";
+
+            html += htmlrow;
+        }
+
+        tbody.html(html);
+    }
+}
+</script>

@@ -1,0 +1,399 @@
+<div class="col-md-12 mt-2 account-title">
+	<i class="fas fa-user-circle"></i><span data-i18n="account.title"></span><br/>
+	<small id="account"></small>
+</div>
+
+<div class="col-md-4 pb-2">
+    <div class="card mb-0 h-100">
+		<div class="card-body pb-1 card-stats-cloud">
+			<div class="float-right" data-i18n="account.immature-balance"></div><br/>
+			<h4 class="float-right font-weight-bold" id="immature"></h4>
+		</div>
+		<ul class="list-group list-group-flush status-card">
+			<li class="list-group-item">
+				<i class="fas fa-university"> </i> <span data-i18n="account.pending-balance"></span>
+				<span class="float-right font-weight-bold" id="balance"></span>
+			</li>
+			<li class="list-group-item">
+				<i class="far fa-money-bill-alt"></i> <span data-i18n="account.total-paid"></span>
+				<span class="float-right font-weight-bold" id="paid"></span>
+			</li>
+            <li class="list-group-item">
+                <i class="fas fa-cubes"></i> <span data-i18n="account.blocks-found"></span>
+                <span class="float-right font-weight-bold" id="blocks-found"></span>
+            </li>
+            <li class="list-group-item">
+                <i class="far fa-money-bill-alt"> </i> <span data-i18n="account.total-payments"></span>
+                <span class="float-right font-weight-bold" id="total-payments"></span>
+            </li>
+		</ul>
+    </div>
+</div>
+
+<div class="col-md-4 pb-2">
+    <div class="card mb-0 h-100">
+		<div class="card-body pb-1 card-stats-cogs">
+			<div class="float-right" data-i18n="account.workers-online"></div><br/>
+			<h4 class="float-right font-weight-bold" id="workers-online"></h4>
+		</div>
+		<ul class="list-group list-group-flush status-card">
+			<li class="list-group-item">
+				<i class="far fa-clock"></i> <span data-i18n="account.last-share"></span>
+				<span class="float-right font-weight-bold" id="last-share"></span>
+			</li>
+			<li class="list-group-item">
+				<i class="fas fa-tachometer-alt"></i> <span data-i18n="account.hashrate-30m"></span>
+				<span class="float-right font-weight-bold" id="hashrate-30m"></span>
+			</li>
+			<li class="list-group-item">
+				<i class="fas fa-tachometer-alt"></i> <span data-i18n="account.hashrate-3h"></span>
+				<span class="float-right font-weight-bold" id="hashrate-3h"></span>
+			</li>
+			<li class="list-group-item">
+				<i class="fas fa-cogs"></i> <span data-i18n="account.round-share"></span>
+				<span class="float-right font-weight-bold" id="round-share"></span>
+			</li>
+			<li class="list-group-item">
+				<i class="far fa-clock"></i> <span data-i18n="account.epoch-switch"></span>
+				<span class="float-right font-weight-bold" id="epoch-switch"></span>
+			</li>
+		</ul>
+    </div>
+</div>
+
+<div class="col-md-4 pb-2">
+	<div class="card mb-0 h-100 ticker">
+		<div class="card-header">
+            <i class="fas fa-chart-bar"></i><span data-i18n="account.estimated"></span>
+        </div>
+		<div class="card-body table-responsive pt-2 pb-2">
+			<p data-i18n="account.estimated-desc"></p>
+			<table class="table table-sm table-striped">
+				<thead>
+					<tr>
+						<th data-i18n="account.period"></th>
+						<th data-i18n="account.earn-coin"></th>
+						<th data-i18n="account.earn-krw"></th>
+						<th data-i18n="account.earn-btc"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td data-i18n="account.day"></td>
+						<td id="day_coin">-</td>
+						<td id="day_cash">-</td>
+						<td id="day_btc">-</td>
+					</tr>
+					<tr>
+						<td data-i18n="account.week"></td>
+						<td id="week_coin">-</td>
+						<td id="week_cash">-</td>
+						<td id="week_btc">-</td>
+					</tr>
+					<tr>
+						<td data-i18n="account.month"></td>
+						<td id="month_coin">-</td>
+						<td id="month_cash">-</td>
+						<td id="month_btc">-</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="card mb-2 blocks-card-tab">
+        <div class="card-header blocks-tab">
+			<button type="button" id="tab-workers" class="btn active"><i class="blocks-tab-icon fas fa-server"></i> <span class="blocks-tab-label" data-i18n="account.workers.title"></span> <span class="badge alert-danger" id="workersOffline"></span></button>
+			<button type="button" id="tab-payouts" class="btn"><i class="blocks-tab-icon fas fa-hand-holding-usd"></i> <span class="blocks-tab-label" data-i18n="account.payouts.title"></span></button>
+        </div>
+        <div class="card-body table-responsive">
+			<div id="panel-workers">
+				<iframe id="worker-chart" style="border:none;overflow:hidden;width:100%;height:200px;" scrolling="no" frameborder="0" allowTransparency="true" onload="resizeFacebookIframe(this)"></iframe>
+				<table class="table table-sm table-striped">
+					<thead>
+						<tr>
+							<th data-i18n="account.workers.id"></th>
+							<th data-i18n="account.workers.hashrate-rough"></th>
+							<th data-i18n="account.workers.hashrate-accurate"></th>
+							<th data-i18n="account.workers.last-share"></th>
+						</tr>
+					</thead>
+					<tbody id="worker-list">
+					</tbody>
+				</table>
+			</div>
+			<div id="panel-payouts">
+				<iframe id="payout-chart" style="border:none;overflow:hidden;width:100%;height:200px;" scrolling="no" frameborder="0" allowTransparency="true" onload="resizeFacebookIframe(this)"></iframe>
+				<div class="card-body">
+					<i class="fas fa-info-circle"></i>
+					<span data-i18n="account.payouts.payout-ext"></span>
+				</div>
+				<table class="table table-sm table-striped">
+					<thead>
+						<tr>
+							<th data-i18n="account.payouts.time"></th>
+							<th data-i18n="account.payouts.amount"></th>
+							<th data-i18n="account.payouts.txid"></th>
+						</tr>
+					</thead>
+					<tbody id="payout-list">
+					</tbody>
+				</table>
+			</div>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="card mb-2">
+		<div class="card-body account-comment" data-i18n="[html]account.workers.notice">
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-12">
+    <div class="card mb-2">
+		<div class="card-body">
+			<span data-i18n="[html]account.workers.use-api"></span>
+			<strong>JSON API URL: </strong><span id="api_link"></span>
+		</div>
+	</div>
+</div>
+
+<script>
+currentPage = {
+    update: function(){
+        var url = window.location.href;
+        if(url.indexOf("/#/") > -1) {
+            selectedAccount = url.split("/#/")[1].split("/")[1];
+        }
+
+		$("#tab-workers").click(function() {
+			changeTab(0);
+		});
+
+		$("#tab-payouts").click(function() {
+			changeTab(1);
+		});
+
+		$("#account").html(selectedAccount);
+		$("#api_link").html("<a href=\"" + apiHostUserUrl + selectedAccount + "\" target=\"_blank\">/api/accounts/" + selectedAccount + "</a>");
+
+		$("#worker-chart").hide();
+		$("#payout-chart").hide();
+		$("#panel-payouts").hide();
+
+		reloadAccount(selectedAccount);
+
+		callPrice();
+    }
+}
+
+var isShowChart = false;
+function showChart() {
+	if(!isShowChart) {
+		$("#worker-chart").show();
+		$("#worker-chart").attr("src", chartWorkerUrl + selectedAccount);
+
+		$("#payout-chart").show();
+		$("#payout-chart").attr("src", chartPaymentUrl + selectedAccount);
+
+		isShowChart = true;
+	}
+}
+
+function callPrice() {
+	callPriceKRW();
+	callPriceESN();
+
+	setTimeout(callPrice, 30000);
+}
+
+function callPriceKRW() {
+	// Bithumb (BTC to KRW)
+	$.ajax({
+		url: 'https://api.bithumb.com/public/ticker/btc',
+		type: 'get',
+		dataType: 'json',
+		crossDomain: true,
+		success: function (data) {
+			if(data.status == "0000") {
+				btcToKrw = data.data.closing_price;
+				refreshEstimated();
+			}
+			else if(data.status == "5600") {
+				// Too many connections
+			}
+		},
+		error: function (data) {
+		}
+	});
+}
+
+function callPriceESN() {
+	esnToBtc = 0.00004839;
+	refreshEstimated();
+}
+
+var accountData;
+var selectedAccount = "";
+var esnToBtc = 0;
+var btcToKrw = 0;
+
+function refreshAccount(data) {
+    accountData = data;
+
+    if(data != null) {
+        $("#immature").html(formatCurrency(gweiToEther(data.stats.immature, 4)));
+        $("#balance").html(formatCurrency(gweiToEther(data.stats.balance, 4)));
+        $("#paid").html(formatCurrency(gweiToEther(data.stats.paid, 4)));
+
+        var lastShare = parseInt(data.stats.lastShare) * 1000;
+
+        $("#last-share").html(formatPrettyDate(lastShare, date_messages));
+        $("#workers-online").html(formatCurrency(data.workersTotal));
+        $("#hashrate-30m").html(formatHashrate(data.currentHashrate, 2));
+        $("#hashrate-3h").html(formatHashrate(data.hashrate, 2));
+
+        var roundShares = data.roundShares;
+        var roundPercent = totalShares > 0 && data.roundShares < totalShares ? (data.roundShares / totalShares) * 100 : 0;
+        var epochOffset = (30000 - (blockHeight % 30000)) * 1000 * blockTime + Date.now();
+
+        $("#blocks-found").html(formatCurrency(data.stats.blocksFound));
+        $("#total-payments").html(formatCurrency(data.paymentsTotal));
+        $("#round-share").html(roundPercent.toFixed(4) + "%");
+        $("#epoch-switch").html(formatPrettyDate(epochOffset, date_messages));
+
+        $("#workersOffline").html(
+            data.workersOffline > 0 ? "<i class=\"fas fa-unlink\"></i> <span class=\"offline-worker\">" + formatCurrency(data.workersOffline) : "</span>");
+
+        if(currentTab == 0)
+            refreshWorkerList(data.workers);
+        else
+            refreshPayoutList(data.payments);
+
+        if(currentTab == 0) $("#panel-workers").show();
+        else $("#panel-workers").hide();
+
+        if(currentTab == 1) $("#panel-payouts").show();
+        else $("#panel-payouts").hide();
+
+		showChart();
+		refreshEstimated();
+    }
+}
+
+function refreshEstimated() {
+	var data = accountData;
+
+	if(data != null) {
+		var blocksPerMin = 60.0 / blockTime;
+		var min_coin = data.hashrate / networkHash * blocksPerMin * blockReward;
+		var day_coin = min_coin * 60 * 24;
+		var week_coin = day_coin * 7;
+		var month_coin = day_coin * 30;
+
+		$("#day_coin").html(formatCurrency(day_coin.toFixed(2)));
+		$("#week_coin").html(formatCurrency(week_coin.toFixed(2)));
+		$("#month_coin").html(formatCurrency(month_coin.toFixed(2)));
+
+		if(esnToBtc > 0) {
+			var day_btc = day_coin * esnToBtc;
+			var week_btc = week_coin * esnToBtc;
+			var month_btc = month_coin * esnToBtc;
+
+			$("#day_btc").html(formatCurrency(day_btc.toFixed(8)));
+			$("#week_btc").html(formatCurrency(week_btc.toFixed(8)));
+			$("#month_btc").html(formatCurrency(month_btc.toFixed(8)));
+		}
+
+		if(esnToBtc && btcToKrw) {
+			var day_cash = day_coin * esnToBtc * btcToKrw;
+			var week_cash = week_coin * esnToBtc * btcToKrw;
+			var month_cash = month_coin * esnToBtc * btcToKrw;
+
+			$("#day_cash").html(formatCurrency(day_cash.toFixed(0)));
+			$("#week_cash").html(formatCurrency(week_cash.toFixed(0)));
+			$("#month_cash").html(formatCurrency(month_cash.toFixed(0)));
+		}
+	}
+}
+
+function refreshWorkerList(workers) {
+    var tbody = $("#worker-list");
+    var html = "";
+    for (var id in workers) {
+        data = workers[id];
+
+        var date = new Date(data.lastBeat * 1000);
+        var hash = formatHashrate(data.hr);
+        var hash_avg = formatHashrate(data.hr2);
+        var offline = data.offline;
+
+        var unlink = offline ? "<i class=\"fas fa-unlink\"></i> " : "";
+        var background = offline ? " class=\"table-warning\"" : "";
+
+        var htmlrow = "<tr " + background + ">" +
+            "<td class=\"table-first-col hash-text\">" + unlink + id + "</td>" +
+            "<td>" + hash + "</td>" +
+            "<td>" + hash_avg + "</td>" +
+            "<td nowrap>" + formatPrettyDate(date, date_messages) + "</td>" +
+            "</tr>";
+
+        html += htmlrow;
+    }
+
+    tbody.html(html);
+}
+
+function refreshPayoutList(payouts) {
+    var tbody = $("#payout-list");
+    var html = "";
+    for (var index in payouts) {
+        data = payouts[index];
+
+        var date = new Date(data.timestamp * 1000);
+        var amount = gweiToEther(data.amount, 8);
+        var tx = data.tx;
+
+        var txUrl = "<a href=\"" + explorerTx + tx + "\" target=\"_blank\">" + tx + "</a>";
+
+        var htmlrow = "<tr>" +
+            "<td class=\"table-first-col\" nowrap>" + date.toLocaleString() + "</td>" +
+            "<td>" + formatCurrency(amount) + "</td>" +
+            "<td class=\"hash-text\">" + txUrl + "</td>" +
+            "</tr>";
+
+        html += htmlrow;
+    }
+
+    tbody.html(html);
+}
+
+var currentTab = 0;
+
+function changeTab(tab) {
+    currentTab = tab;
+
+    if(tab == 0) $("#tab-workers").addClass("active");
+    else $("#tab-workers").removeClass("active");
+
+    if(tab == 1) $("#tab-payouts").addClass("active");
+    else $("#tab-payouts").removeClass("active");
+
+    if(tab == 0) $("#panel-workers").show();
+    else $("#panel-workers").hide();
+
+    if(tab == 1) $("#panel-payouts").show();
+    else $("#panel-payouts").hide();
+
+    if(accountData != null) {
+        if(currentTab == 0)
+            refreshWorkerList(accountData.workers);
+        else
+            refreshPayoutList(accountData.payments);
+    }
+}
+</script>

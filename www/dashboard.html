@@ -1,0 +1,314 @@
+<div class="col-md-12 mt-2 page-title">
+    <i class="fa fa-cubes"></i><span data-i18n="common.dashboard"></span>
+</div>
+
+<div class="col-lg-6 mb-2">
+    <div class="card mb-0 h-100">
+        <table class="h-100">
+            <tbody>
+                <tr>
+                    <td class="w-50 align-middle">
+                        <div class="card-body miner-total">
+                            <i class="stats-icon fa fa-users"></i>
+                            <div class="stats-value" id="minersTotal">0</div>
+                            <div class="text-uppercase stats-label" data-i18n="dashboard.miners_online"></div>
+                        </div>
+                    </td>
+                    <td class="w-50 align-middle">
+                        <div class="card-body pool-hash">
+                            <i class="stats-icon fas fa-tachometer-alt"></i>
+                            <div class="stats-value" id="poolHash">0</div>
+                            <div class="text-uppercase stats-label" data-i18n="dashboard.pool_hash"></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="col-lg-3 mb-2 col-dashboard-stats">
+    <div class="card mb-0 h-100 dashboard-stats">
+        <div class="stats-item">
+            <i class="stats-icon text-muted fas fa-tachometer-alt"></i>
+            <span class="text-muted stats-label" data-i18n="dashboard.network_hash"></span>
+            <span class="stats-value font-weight-bold float-right" id="networkHash">0</span>
+        </div>
+        <div class="stats-item">
+            <i class="stats-icon text-muted fas fa-shield-alt"></i>
+            <span class="text-muted stats-label" data-i18n="dashboard.difficulty"></span>
+            <span class="stats-value font-weight-bold float-right" id="difficulty">0</span>
+        </div>
+        <div class="stats-item">
+            <i class="stats-icon text-muted fa fa-cubes"></i>
+            <span class="text-muted stats-label" data-i18n="dashboard.blockchain_height"></span>
+            <span class="stats-value font-weight-bold float-right" id="blockHeight">0</span>
+        </div>
+        <div class="stats-item">
+            <i class="stats-icon text-muted far fa-clock"></i>
+            <span class="text-muted stats-label" data-i18n="dashboard.lastblock"></span>
+            <span class="stats-value font-weight-bold float-right" id="lastBlock">-</span>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-3 mb-2">
+    <div class="card mb-0 h-100 ticker">
+        <div class="card-header">
+            <i class="fas fa-chart-bar"></i><span data-i18n="dashboard.ticker"></span>
+        </div>
+        <div class="card-body">
+            <div>
+                <span data-i18n="dashboard.to_krw"></span>
+                <span class="float-right font-weight-bold"><i class="fas fa-won-sign"></i> <span id="tickerKRW"></span></span>
+            </div>
+            <div>
+                <span data-i18n="dashboard.to_btc"></span>
+                <span class="float-right font-weight-bold"><i class="fab fa-btc"></i> <span id="tickerBTC"></span></span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="text-muted" data-i18n="dashboard.ticker_from"></div>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="card col-md-12 mb-2 no-padding">
+        <div class="card-body mb-0 pb-0">
+            <div class="form-group">
+                <label for="account" data-i18n="dashboard.enter_your_addr_note"></label>
+                <form id="form_account">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="account" id="account" data-i18n="[placeholder]dashboard.enter_your_addr"/>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary" data-i18n="[html]dashboard.search">Search</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-lg-12 col-xl-6">
+            <div class="card server-card mb-2">
+                <div class="card-header">
+                    <i class="fas fa-server"></i><span data-i18n="dashboard.server_status"></span>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <span id="kor1">Checking</span>
+                        <span>esn-kor1.topmining.co.kr:8008</span>
+                        <span class="text-muted float-right" data-i18n="dashboard.korea"></span>
+                    </li>
+                    <li class="list-group-item">
+                        <span id="kor2">Checking</span>
+                        <span>esn-kor2.topmining.co.kr:8008</span>
+                        <span class="text-muted float-right" data-i18n="dashboard.korea"></span>
+                    </li>
+                    <li class="list-group-item">
+                        <span id="kor3">Checking</span>
+                        <span>esn-kor3.topmining.co.kr:8008</span>
+                        <span class="text-muted float-right" data-i18n="dashboard.korea"></span>
+                    </li>
+                    <li class="list-group-item">
+                        <div>
+                            <small data-i18n="dashboard.nicehash_only"></small>
+                            <span class="button-tooltip-small text-muted" data-toggle="tooltip" data-placement="top" data-i18n="[title]dashboard.nicehash_desc"><i class="fa fa-question-circle"></i></span>
+                        </div>
+                        <span id="nicehash">Checking</span>
+                        <span>esn-nicehash.topmining.co.kr:9008</span>
+                        <span class="text-muted float-right" data-i18n="dashboard.korea"></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card server-card mb-2">
+                <div class="card-body">
+                    <p>
+                        <span class="mr-2 font-weight-bold" data-i18n="dashboard.pool_fee"></span> <span class="badge-fee">&nbsp;<span id="pool_fee"></span>%&nbsp;</span><br/>
+                        <span id="pool_fee_desc"></span>
+                    </p>
+                    <p>
+                        <span class="mr-2 font-weight-bold" data-i18n="dashboard.min_payout"></span> <span class="font-weight-bold"><span id="min_payout"></span></span><br/>
+                        <span id="min_payout_desc"></span>
+                    </p>
+                    <p>
+                        <span class="mr-2 font-weight-bold" data-i18n="dashboard.payout_model"></span> <span class="badge-share">&nbsp;PROP&nbsp;</span><br/>
+                        <span data-i18n="dashboard.payout_model_desc"></span>
+                    </p>
+                    <p>
+                        <span class="mr-2 font-weight-bold align-middle" data-i18n="dashboard.support_nicehash"></span> <img src="/images/nicehash_logo.png" width="80"/><br/>
+                        <span data-i18n="dashboard.nicehash_desc"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-xl-6">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 data-i18n="dashboard.howto_mine"></h5>
+                    <div class="note-title"><span data-i18n="dashboard.claymore-desc"></span> <a href="#/howto" onclick="location.refresh();" data-i18n="dashboard.more-help"></a></div>
+                    <code class="note-body">
+                        EthDcrMiner64.exe -epool
+                        <span class="text-nowrap"><strong>esn-kor2.topmining.co.kr:8008</strong></span>
+                        <span class="text-nowrap">-esm 0</span>
+                        <span class="text-nowrap">-ewal <span data-i18n="dashboard.wallet-addr"></span></span>
+                        <span class="text-nowrap">-eworker <span data-i18n="dashboard.worker-name"></span></span>
+                        <span class="text-nowrap">-allcoins 1 -allpools 1</span>
+                    </code>
+                    <div class="note-title"><span data-i18n="dashboard.ethminer-nvidia-desc"></span> <a href="help" data-i18n="dashboard.more-help"></a></div>
+                    <code class="note-body">
+                        ethminer.exe -U -S
+                        <span class="text-nowrap"><strong>esn-kor2.topmining.co.kr:8008</strong></span>
+                        <span class="text-nowrap">-SP 1 -O</span>
+                        <span class="text-nowrap"><span data-i18n="dashboard.wallet-addr"></span>.<span data-i18n="dashboard.worker-name"></span>:x</span>
+                    </code>
+                    <div class="note-title"><span data-i18n="dashboard.ethminer-amd-desc"></span> <a href="help" data-i18n="dashboard.more-help"></a></div>
+                    <code class="note-body">
+                        ethminer.exe -G -S
+                        <span class="text-nowrap"><strong>esn-kor2.topmining.co.kr:8008</strong></span>
+                        <span class="text-nowrap">-SP 1 -O</span>
+                        <span class="text-nowrap"><span data-i18n="dashboard.wallet-addr"></span>.<span data-i18n="dashboard.worker-name"></span>:x</span>
+                    </code>
+                    <br/>
+                    <h5 data-i18n="dashboard.useful_link"></h5>
+                    <div class="useful_link"><span data-i18n="dashboard.link-offical-website"></span> <a href="https://ethersocial.org/" target="_blank">ethersocial.org</a></div>
+                    <div class="useful_link"><span data-i18n="dashboard.link-offical-explorer"></span> <a href="https://ethersocial.net/" target="_blank">ethersocial.net</a></div>
+                    <div class="useful_link"><span data-i18n="dashboard.link-gons-explorer"></span> <a href="https://escblock.gonsmine.com/" target="_blank">escblock.gonsmine.com</a></div>
+                    <div class="useful_link"><span data-i18n="dashboard.link-pool-status"></span> <a href="https://escpoolstats.gonsmine.com/" target="_blank">escpoolstats.gonsmine.com</a></div>
+                    <div class="useful_link"><span data-i18n="dashboard.link-peer-monitor"></span> <a href="https://escstats.gonsmine.com/" target="_blank">escstats.gonsmine.com</a></div>
+                    <div class="useful_link"><span data-i18n="dashboard.link-ddengle"></span> <a href="https://www.ddengle.com/" target="_blank">www.ddengle.com</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div>
+
+<script>
+currentPage = {
+    update: function(){
+        $("#pool_fee").text(poolFee);
+        $("#min_payout").text(minPayout + " " + coinUnit);
+
+        refreshPoolDetail();
+
+        $("#form_account").on("submit", function(event) {
+            event.preventDefault();
+
+            var account = $("#account").val();
+            if(account.length > 40) {
+                $.cookie('selected_account', account);
+                window.location.href = "#/account/" + account;
+                location.reload();
+            }
+        });
+
+        var account = $.cookie('selected_account');
+        if(account && account.length > 40) {
+            $("#account").val(account);
+        }
+
+        reloadHost();
+        callPrice();
+    },
+    changeLanguage: function(){
+        refreshPoolDetail();
+    }
+}
+
+function refreshPoolDetail() {
+    $("#pool_fee_desc").html($.t("dashboard.pool_fee_desc").replace("{pool_fee}", poolFee));
+    $("#min_payout_desc").html($.t("dashboard.min_payout_desc").replace("{min_payout}", minPayout));
+}
+
+var esnToBtc = 0;
+var btcToKrw = 0;
+
+function callPrice() {
+	callPriceKRW();
+	callPriceESN();
+
+	setTimeout(callPrice, 30000);
+}
+
+function callPriceKRW() {
+	// Bithumb (BTC to KRW)
+	$.ajax({
+		url: 'https://api.bithumb.com/public/ticker/btc',
+		type: 'get',
+		dataType: 'json',
+		crossDomain: true,
+		success: function (data) {
+			if(data.status == "0000") {
+				btcToKrw = data.data.closing_price;
+
+                if(esnToBtc > 0) {
+                    $("#tickerKRW").html(formatCurrency((btcToKrw * esnToBtc).toFixed(0)));
+                }
+			}
+			else if(data.status == "5600") {
+				// Too many connections
+			}
+		},
+		error: function (data) {
+		}
+	});
+}
+
+function callPriceESN() {
+	esnToBtc = 0.00004839;
+
+    $("#tickerBTC").html(formatCurrency(esnToBtc.toFixed(8)));
+}
+
+function refreshStatsDashboard(stats) {
+    if(stats != null) {
+        var hashRateString = formatHashrate(stats.hashrate, true);
+        var minersTotal = formatCurrency(stats.minersTotal);
+        var lastBlockFound = formatPrettyDate(stats.stats.lastBlockFound * 1000, date_messages);
+        var blockHeight = formatCurrency(stats.nodes[0].height);
+        var difficulty = formatDifficulty(stats.nodes[0].difficulty);
+        var networkHash = formatHashrate(stats.nodes[0].difficulty / blockTime);
+
+        $("#poolHash").html(hashRateString);
+        $("#minersTotal").html(minersTotal);
+        $("#networkHash").html(networkHash);
+        $("#difficulty").html(difficulty);
+        $("#blockHeight").html(blockHeight);
+        $("#lastBlock").html(lastBlockFound);
+    }
+}
+
+function refreshHost(host) {
+    if(host != null) {
+        $("#kor1").html(getHostLoad(host.kor1.usage, host.kor1.time))
+        $("#kor2").html(getHostLoad(host.kor2.usage, host.kor2.time))
+        $("#kor3").html(getHostLoad(host.kor3.usage, host.kor3.time))
+        $("#nicehash").html(getHostLoad(host.nicehash.usage, host.nicehash.time))
+    }
+}
+
+function getHostLoad(usage, time) {
+    var cpuLow = "<span class=\"badge-host badge-host-low\" data-i18n=\"dashboard.status_low\">" + $.t("dashboard.status_low") + "</span>";
+    var cpuMid = "<span class=\"badge-host badge-host-mid\" data-i18n=\"dashboard.status_middle\">" + $.t("dashboard.status_middle") + "</span>";
+    var cpuHigh = "<span class=\"badge-host badge-host-high\" data-i18n=\"dashboard.status_high\">" + $.t("dashboard.status_high") + "</span>";
+
+    var load = cpuLow;
+    var now = Date.now();
+    var bef5minute = (now / 1000) - (5 * 60);
+    if(time < bef5minute) {
+        load = "";
+    }
+    else {
+        if(usage > 20) load = cpuHigh;
+        else if(usage > 8) load = cpuMid;
+        else str = load = cpuLow;
+    }
+
+    return load;
+}
+</script>

@@ -1,0 +1,382 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable = no">
+    <title>TOP Mining | ESN Mining Pool</title>
+    <meta name="description" content="High profitability EtherSocial mining pool"/>
+    <meta name="keywords" content="ethersocial, pool, mining, cryptocurrency"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+    <link rel="stylesheet" href="/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="/assets/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/assets/css/cs-skin-elastic.css">
+
+    <link rel="stylesheet" href="app.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="fixed-top">
+    <!-- Portal Menu Start -->
+    <div id="portal-menu" class="portal-menu container-floud">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="menu-list">
+                        <div class="menu-brand">
+                            <img class="brand-icon" src="/images/logo-portal.png"/>
+                            <span class="brand-typo" data-i18n="[html]common.brand"></span>
+                        </div>
+                        <div class="menu-item">
+                            <a class="active" href="/">
+                                <img class="align-middle" src="/images/logo-pool-esn-active.png" width="24" height="24"/>
+                                <span class="link-text align-middle" data-i18n="[html]common.esn-pool"></span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a href="http://clo-web.topmining.co.kr">
+                                <img class="align-middle" src="/images/logo-pool-clo.png" width="24" height="24"/>
+                                <span class="link-text align-middle" data-i18n="[html]common.clo-pool"></span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a href="http://flm.topmining.co.kr">
+                                <img class="align-middle" src="/images/logo-pool-flm.png" width="24" height="24"/>
+                                <span class="link-text align-middle" data-i18n="[html]common.flm-pool"></span>
+                            </a>
+                        </div>
+
+                        <div class="pool-menu-toggle">
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#poolNavbar" aria-controls="poolNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="fas fa-bars"></i>
+                            </button>
+                        </div>
+
+                        <div class="language-select-top">
+                            <a href="javascript: " onclick="javascript: changeLng('en');"><i class="flag-icon flag-icon-us"></i> <span class="language-name">English</span></a>&nbsp;
+                            <a href="javascript: " onclick="javascript: changeLng('ko');"><i class="flag-icon flag-icon-kr"></i> <span class="language-name">한국어</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Portal Menu Finish -->
+
+    <!-- Pool Menu Start -->
+    <div id="pool-menu" class="pool-menu container-floud">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" href="#"><img src="images/logo-pool-esn.png" alt="Logo" height="36"></a>
+
+                <div class="collapse navbar-collapse" id="poolNavbar">
+                    <ul class="navbar-nav">
+                        <li id="main-menu-dashboard" class="nav-item">
+                            <a class="nav-link" href="#/dashboard" onclick="location.reload();"><i class="menu-icon fas fa-tachometer-alt"></i><span data-i18n="common.dashboard"></span></a>
+                        </li>
+                        <li id="main-menu-howto" class="nav-item">
+                            <a class="nav-link" href="#/howto" onclick="location.reload();"><i class="menu-icon fa fa-download"></i><span data-i18n="common.howto"></span></a>
+                        </li>
+                        <li id="main-menu-blocks" class="nav-item">
+                            <a class="nav-link" href="#/blocks" onclick="location.reload();"><i class="menu-icon fa fa-cubes"></i><span data-i18n="common.pool_blocks"></span>
+                                <span class="badge-block" id="immature-blocks">&nbsp;</span>
+                            </a>
+                        </li>
+                        <li id="main-menu-payments" class="nav-item">
+                            <a class="nav-link" href="#/payments" onclick="location.reload();"><i class="menu-icon fas fa-hand-holding-usd"></i></i><span data-i18n="common.payments"></span></a>
+                        </li>
+                        <li id="main-menu-miners" class="nav-item">
+                            <a class="nav-link" href="#/miners" onclick="location.reload();"><i class="menu-icon fa fa-users"></i><span data-i18n="common.miners"></span></a>
+                        </li>
+                        <li id="main-menu-about" class="nav-item">
+                            <a class="nav-link" href="#/about" onclick="location.reload();"><i class="menu-icon fa fa-comments"></i><span data-i18n="common.about"></span></a>
+                        </li>
+                    </ul>
+
+                    <div class="language-select-nav">
+                        <a href="#" onclick="javascript: changeLng('en');"><i class="flag-icon flag-icon-us"></i> <span class="language-name">English</span></a>&nbsp;
+                        <a href="#" onclick="javascript: changeLng('ko');"><i class="flag-icon flag-icon-kr"></i> <span class="language-name">한국어</span></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Pool Menu Finish -->
+    </div>
+
+    <!-- Contents Panel Start -->
+    <div id="body-panel" class="container body-panel">
+        <div id="page-error" class="alert alert-danger" role="alert"></div>
+        <div id="page-body" class="row page-body mt-2">
+        </div>
+        <div id="loading" style="text-align: center; padding-top: 100px;  padding-bottom: 100px;"><img src="/images/loading.gif" width="60" height="60"/></div>
+    </div>
+    <!-- Contents Panel Finish -->
+
+    <div id="float-facebook" class="float-facebook" style="background-color: #f1f2f7">
+        <div id="box_facebook">
+            <iframe id="iframe_facebook" height="600" class="box_facebook" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <strong>TOPMining</strong>
+            <span class="float-right">
+                <a href="//facebook.com/topmining.co.kr" target="_blank"><i class="fab fa-facebook-square footer-link"></i></a>
+                <a href="//twitter.com/@topmining" target="_blank"><i class="fab fa-twitter-square footer-link"></i></a>
+            </span>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/8.1.0/i18next.min.js" ></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-xhr-backend/1.5.1/i18nextXHRBackend.min.js" ></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/2.1.0/i18nextBrowserLanguageDetector.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-i18next/1.2.0/jquery-i18next.min.js"></script>
+
+    <script src="config.js" ></script>
+    <script src="api.js" ></script>
+    <script src="date-string.js" ></script>
+
+<script>
+var date_messages = date_messages_string.en;
+var currentMenu;
+var beforeIframeSize = 0;
+var pageName;
+var currentPage;
+var ajaxPageLoading;
+
+var poolStats;
+var networkHash = 0;
+var totalShares = 0;
+var blockHeight = 0;
+
+FontAwesomeConfig = { searchPseudoElements: true };
+
+function initLocale(localeCallback, pageCallback) {
+    i18next.use(i18nextXHRBackend).use(i18nextBrowserLanguageDetector).init({
+        fallbackLng: 'en',
+		load: 'languageOnly',
+        backend: {
+            loadPath: '/locale/{{lng}}.json',
+            crossDomain: true
+        }
+    }, function(err, t) {
+        jqueryI18next.init(i18next, $);
+        date_messages = date_messages_string[i18next.language.substring(0, 2)];
+
+        $('#portal-menu').localize();
+        $('#pool-menu').localize();
+        $('#body-panel').localize();
+        $('[data-toggle="tooltip"]').tooltip();
+
+        if(localeCallback) localeCallback();
+
+        if(pageCallback) pageCallback();
+    });
+}
+
+function changeLng(lng) {
+    i18next.changeLanguage(lng);
+    initLocale(null,
+        currentPage ? currentPage.changeLanguage : null);
+	$('.navbar-collapse').collapse('hide');
+}
+
+function setCurrentMenu(menu) {
+    if(currentMenu) currentMenu.removeClass("active");
+
+    switch (menu) {
+        case "dashboard":
+            currentMenu = $('#main-menu-dashboard');
+            break;
+        case "howto":
+            currentMenu = $('#main-menu-howto');
+            break;
+        case "blocks":
+            currentMenu = $('#main-menu-blocks');
+            break;
+        case "payments":
+            currentMenu = $('#main-menu-payments');
+            break;
+        case "miners":
+            currentMenu = $('#main-menu-miners');
+            break;
+        case "about":
+            currentMenu = $('#main-menu-about');
+            break;
+        default:
+            currentMenu = null;
+            break;
+    }
+
+    if(currentMenu) {
+        currentMenu.addClass("active");
+    }
+
+    return currentMenu != null || menu == "account";
+}
+
+$(function(){
+    initLocale(null);
+
+	$(document).on('click', 'a[href="#"]', function(e){
+		e.preventDefault();
+	});
+
+    var page = "dashboard";
+    var url = window.location.href;
+    if(url.indexOf("/#/") > -1) {
+        page = url.split("/#/")[1].split("/")[0];
+    }
+
+    pageName = page;
+    routePage(page, function() {
+        refreshStatsPost();
+    });
+
+    reloadStats();
+
+    resizeFacebookIframe();
+    setTimeout(resizeFacebookIframe, 500);
+
+    $(window).resize(function() {
+		resizeFacebookIframe();
+        setTimeout(resizeFacebookIframe, 500);
+	});
+
+    $(window).on('hashchange', function(e){
+        location.reload();
+    });
+});
+
+function resizeFacebookIframe() {
+    var panel_left = $("#page-body").position().left;
+    var panel_width = parseInt($("#page-body").width());
+    var panel_right = panel_width + panel_left - 20;
+
+    var scr_width = $( window ).width();
+	var width = parseInt(scr_width - panel_right - 10);
+
+    if(width < 280) width = 280;
+
+    var float_facebook = $("#float-facebook");
+
+    if(width <= 280) {
+        float_facebook.css('position', 'relative');
+        float_facebook.css('top', '0');
+        float_facebook.css('left', panel_left + "px");
+
+        width = parseInt(panel_width);
+    }
+    else {
+        float_facebook.css('position', 'fixed');
+        float_facebook.css('top', '112px');
+        float_facebook.css('left', panel_right + "px");
+    }
+
+    if(width > 360) width = 360;
+
+    float_facebook.css('width', width + "px");
+
+	if(width != beforeIframeSize) {
+		beforeIframeSize = width;
+		$("#iframe_facebook").attr("src", "https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/topmining.co.kr/&tabs=timeline&width=" + width + "&height=600&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true");
+		$("#iframe_facebook").attr("width", width);
+	}
+}
+
+function refreshStats(stats) {
+    if(stats != null) {
+        var immatureTotal = stats.immatureTotal + stats.candidatesTotal;
+        $("#immature-blocks").html(immatureTotal);
+
+        networkHash = stats.nodes[0].difficulty / blockTime;
+        totalShares = stats.stats.roundShares;
+        blockHeight = stats.nodes[0].height;
+
+        poolStats = stats;
+        refreshStatsPost();
+    }
+}
+
+function refreshStatsPost() {
+    if(pageName == "dashboard" && currentPage)
+        refreshStatsDashboard(poolStats);
+}
+
+function routePage(page, loadedCallback) {
+    $('#page-body').html('');
+    $('#loading').show();
+    $('#page-error').hide();
+    if (ajaxPageLoading)
+        ajaxPageLoading.abort();
+
+    if(setCurrentMenu(page)) {
+        $('.navbar-collapse').collapse('hide');
+
+        ajaxPageLoading = $.ajax({
+            url: '/' + page + ".html",
+            cache: false,
+            success: function (data) {
+                $('#page-body').html(data);
+                initLocale(function() {
+                    $('#loading').hide();
+                    $('#page-body').show();
+                    currentPage.update();
+                    if (loadedCallback) loadedCallback();
+                });
+            },
+            error(request,status,error) {
+                if(request.status == 404)
+                    showErrorMessage(errorNotFoundPage);
+                else
+                    showErrorMessage(errorUnknown);
+            }
+        });
+    }
+    else {
+        // Error Page!!
+        $('#loading').hide();
+        showErrorMessage(errorNotFoundPage);
+    }
+}
+
+function showErrorMessage(code) {
+    var pageError = $('#page-error');
+
+    pageError.show();
+
+    var errorMsg = "";
+    if(code == errorNotFoundPage) {
+        if($.t) errorMsg = $.t("common.error_not_page");
+        pageError.html("<span data-i18n=\"[html]common.error_not_page\">" + errorMsg + "</span>");
+    }
+    else if(code == errorUnknown) {
+        if($.t) errorMsg = $.t("common.error_unknown");
+        pageError.html("<span data-i18n=\"[html]common.error_unknown\">" + errorMsg + "</span>");
+    }
+    else if(code == errorWallet) {
+        if($.t) errorMsg = $.t("common.error_wallet");
+        pageError.html("<span data-i18n=\"[html]common.error_wallet\">" + errorMsg + "</span>");
+    }
+    else if(code == errorApiDown) {
+        if($.t) errorMsg = $.t("common.error_api_down");
+        pageError.html("<span data-i18n=\"[html]common.error_api_down\">" + errorMsg + "</span>");
+    }
+}
+</script>
+
+</body>
+</html>

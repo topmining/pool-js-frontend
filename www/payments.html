@@ -1,0 +1,66 @@
+<div class="col-md-12 mt-2 page-title">
+    <i class="fas fa-hand-holding-usd"></i><apan data-i18n="common.payments"></apan>
+</div>
+
+<div class="col-sm-12">
+    <div class="card table-responsive mb-2 blocks-card">
+        <div class="card-header">
+            <span data-i18n="[html]payments.last-payouts"></span><br/>
+            <small data-i18n="[html]payments.last-desc"></small>
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-sm table-striped">
+                <thead>
+                    <tr>
+                        <th data-i18n="payments.time"></th>
+                        <th data-i18n="payments.qty"></th>
+                        <th data-i18n="payments.address"></th>
+                        <th data-i18n="payments.txid"></th>
+                    </tr>
+                </thead>
+                <tbody id="payment-list">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+currentPage = {
+    update: function(){
+        reloadPaymets();
+    }
+}
+
+function refreshPayments(payments) {
+    if(payments != null) {
+        var tbody = $("#payment-list");
+        var html = "";
+
+        for (var index in payments.payments) {
+            var data = payments.payments[index];
+            var timestamp = data.timestamp;
+            var date = new Date(timestamp * 1000);
+            var address = data.address;
+            var amount = formatCurrency(gweiToEther(data.amount, 3));
+            var tx = data.tx;
+            var txStr = "";
+            var addrStr = "";
+
+            addrStr = "<a href=\"" + explorerAddr + address + "\" target=\"_blank\">" + address + "</a>";
+            txStr = "<a href=\"" + explorerTx + tx + "\" target=\"_blank\">" + tx.substring(0, 20) + "..." + tx.substring(tx.length-20, tx.length) + "</a>";
+
+            var htmlrow = "<tr id=\"payment-" + timestamp + "\">" +
+                "<td class=\"table-first-col\" nowrap>" + date.toLocaleString() + "</td>" +
+                "<td>" + amount + "</td>" +
+                "<td class=\"hash-text\">" + addrStr + "</td>" +
+                "<td class=\"hash-text\">" + txStr + "</td>" +
+                "</tr>";
+
+            html += htmlrow;
+        }
+
+        tbody.html(html);
+    }
+}
+</script>
