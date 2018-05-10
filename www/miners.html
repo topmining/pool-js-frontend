@@ -30,13 +30,6 @@ currentPage = {
     }
 }
 
-function refreshStats(stats) {
-    if(stats != null) {
-        var immatureTotal = stats.immatureTotal + stats.candidatesTotal;
-        $("#immature-blocks").html(immatureTotal);
-    }
-}
-
 function refreshMiners(miners) {
     if(miners != null) {
         var datas = [];

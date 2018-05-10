@@ -52,14 +52,14 @@ a:hover {
 }
 
 .brand-typo {
-    font-size: 19pt;
-    color: #e1e1e1;
-    font-weight: bold;
+    margin-top: 5px;
+    height: 36px;
+    margin-right: 16px;
 }
 
 .brand-icon {
-    height: 49px;
-    margin-right: 8px
+    height: 46px;
+    margin-right: 8px;
 }
 
 .portal-menu {
@@ -67,17 +67,24 @@ a:hover {
     height: 66px;
 }
 
+.portal-menu .container {
+    padding-left: 6px !important;
+}
+
 .portal-menu .menu-list {
     display: inline-flex;
     width: 100%;
     height: 66px;
-    padding-left: 3px !important;
+    padding-left: 0 !important;
     padding-right: 3px !important;
+}
+
+.portal-menu .link-text {
+    margin-left: 4px;
 }
 
 .portal-menu .menu-brand {
     display: flex;
-    margin-right: 20px;
     align-items: center;
 }
 
@@ -748,7 +755,7 @@ color: #fff; }
   }
 
   .brand-icon {
-      height: 34px;
+      height: 36px;
   }
 
   .page-title {
@@ -762,10 +769,7 @@ color: #fff; }
 
 @media (max-width: 720px) {
     .portal-menu .link-text {
-        font-size: 0;
-        margin-left: 0;
-        margin: 0;
-        padding: 0;
+        display: none;
     }
 
     .portal-menu {
