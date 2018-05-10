@@ -81,6 +81,7 @@ a:hover {
 
 .portal-menu .link-text {
     margin-left: 4px;
+    font-size: 1.2em;
 }
 
 .portal-menu .menu-brand {
@@ -676,7 +677,7 @@ color: #fff; }
     content: "\f0c2";
     font-weight: 900;
     position:absolute;
-    top:15px;
+    top:6px;
     font-size: 42px;
     color: #63c2de;
 }
@@ -686,9 +687,17 @@ color: #fff; }
     content: "\f085";
     font-weight: 900;
     position:absolute;
-    top:15px;
+    top:6px;
     font-size: 42px;
     color: #f86c6b;
+}
+
+.card-stats-cloud {
+    background-color: #fff !important;
+}
+
+.card-stats-cogs {
+    background-color: #fff !important;
 }
 
 .container {

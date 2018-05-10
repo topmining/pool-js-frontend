@@ -136,7 +136,7 @@
         "period": "기간",
         "day": "일일",
         "week": "주간",
-        "month": "년간",
+        "month": "월간",
         "earn-coin": "ESN",
         "earn-krw": "KRW",
         "earn-btc": "BTC",
@@ -171,30 +171,6 @@
             "amount": "수량",
             "no-payout": "아직 출금 내역이 없습니다."
         }
-    },
-    "date-messages": {
-        "afterSuffix": "후",
-        "beforeSuffix": "전",
-
-        "second": "방금전",
-        "seconds": "%s 초 %s",
-        "minute": "1분 %s",
-        "minutes": "%s분 %s",
-        "hour": "1시간 %s",
-        "hours": "%s시간 %s",
-        "day": "1일 %s",
-        "days": "%s일 %s",
-        "week": "1주일 %s",
-        "weeks": "%s주일 %s",
-        "month": "1달 %s",
-        "months": "%s달 %s",
-        "year": "1년 %s",
-        "years": "%s년 %s",
-
-        "yesterday": "어제",
-        "beforeYesterday": "그제",
-        "tomorrow": "내일",
-        "afterTomorrow": "모레"
     },
     "howto": {
         "mining": {

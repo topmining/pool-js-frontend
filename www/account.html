@@ -5,7 +5,7 @@
 
 <div class="col-md-4 pb-2">
     <div class="card mb-0 h-100">
-		<div class="card-body pb-1 card-stats-cloud">
+		<div class="card-header pb-1 card-stats-cloud">
 			<div class="float-right" data-i18n="account.immature-balance"></div><br/>
 			<h4 class="float-right font-weight-bold" id="immature"></h4>
 		</div>
@@ -32,7 +32,7 @@
 
 <div class="col-md-4 pb-2">
     <div class="card mb-0 h-100">
-		<div class="card-body pb-1 card-stats-cogs">
+		<div class="card-header pb-1 card-stats-cogs">
 			<div class="float-right" data-i18n="account.workers-online"></div><br/>
 			<h4 class="float-right font-weight-bold" id="workers-online"></h4>
 		</div>
@@ -206,7 +206,7 @@ function showChart() {
 
 function callPrice() {
 	callPriceKRW();
-	callPriceESN();
+	callPriceCoin();
 
 	setTimeout(callPrice, 30000);
 }
@@ -232,7 +232,7 @@ function callPriceKRW() {
 	});
 }
 
-function callPriceESN() {
+function callPriceCoin() {
 	esnToBtc = 0.00004839;
 	refreshEstimated();
 }

@@ -172,30 +172,6 @@
             "no-payout": "No payouts yet."
         }
     },
-    "date-messages": {
-        "afterSuffix": "later",
-        "beforeSuffix": "ago",
-
-        "second": "Just now",
-        "seconds": "%s seconds %s",
-        "minute": "One minute %s",
-        "minutes": "%s minutes %s",
-        "hour": "One hour %s",
-        "hours": "%s hours %s",
-        "day": "One day %s",
-        "days": "%s days %s",
-        "week": "One week %s",
-        "weeks": "%s weeks %s",
-        "month": "One month %s",
-        "months": "%s months %s",
-        "year": "One year %s",
-        "years": "%s years %s",
-
-        "yesterday": "Yesterday",
-        "beforeYesterday": "The day before yesterday",
-        "tomorrow": "Tomorrow",
-        "afterTomorrow": "The day after tomorrow"
-    },
     "howto": {
         "mining": {
             "title": "Help",

@@ -230,7 +230,7 @@ var btcToKrw = 0;
 
 function callPrice() {
 	callPriceKRW();
-	callPriceESN();
+	callPriceCoin();
 
 	setTimeout(callPrice, 30000);
 }
@@ -259,7 +259,7 @@ function callPriceKRW() {
 	});
 }
 
-function callPriceESN() {
+function callPriceCoin() {
 	esnToBtc = 0.00004839;
 
     $("#tickerBTC").html(formatCurrency(esnToBtc.toFixed(8)));
