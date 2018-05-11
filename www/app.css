@@ -254,38 +254,8 @@ a:hover {
 
 }
 
-.bg-flat-color-1 {
-  background: #20a8d8; }
-
-.bg-flat-color-2 {
-  background: #63c2de; }
-
-.bg-flat-color-3 {
-  background: #ffc107; }
-
-.bg-flat-color-4 {
-  background: #f86c6b; }
-
-.bg-flat-color-5 {
-  background: #4dbd74; }
-
-.flat-color-1 {
-color: #20a8d8; }
-
-.flat-color-2 {
-color: #63c2de; }
-
-.flat-color-3 {
-color: #ffbf00; }
-
-.flat-color-4 {
-color: #f86c6b; }
-
-.flat-color-5 {
-color: #4dbd74; }
-
-.flat-color-white {
-color: #fff; }
+.color-title {
+color: var(--color-title); }
 
 .card {
   margin-bottom: 1.5rem;

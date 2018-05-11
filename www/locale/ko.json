@@ -30,7 +30,7 @@
 		"network_hash": "전체 해시",
 		"blockchain_height": "최종 블록번호",
         "pool_fee_desc": "블록 발견시 마다 {pool_fee}% 수수료가 발생됩니다.",
-        "min_payout_desc": "채굴량 {min_payout} CLO 이상이 되면 주기적으로 자동 출금됩니다.",
+        "min_payout_desc": "채굴량 {min_payout} ESN 이상이 되면 주기적으로 자동 출금됩니다.",
         "payout_model_desc": "쉐어를 받은 만큼 균등하게 지급됩니다.",
 		"enter_your_addr": "이더소셜(ESN) 지갑주소",
 		"enter_your_addr_note": "채굴 상태와 출금 내역을 확인하려면 아래칸에 이더소셜(ESN) 지갑주소를 입력하세요.",
@@ -80,7 +80,13 @@
         "link-peer-monitor": "ESN 피어 모니터링",
         "link-ddengle": "땡글 커뮤니티",
         "support_nicehash": "나이스 해시 지원",
-        "nicehash_desc": "나이스 해시를 이용해 채굴이 가능합니다."
+        "nicehash_desc": "나이스 해시를 이용해 채굴이 가능합니다.",
+        "algorithm": "채굴 알고리즘",
+        "phi": "Ethash(Dagger Hashimoto)",
+        "algorithm_desc": "ASIC 저항성, 가벼운 클라이언트 검증 가능성",
+        "blockreward": "블록 보상",
+        "blocktime": "평균 블록시간",
+        "blocktime-value": "14.4초"
 	},
 	"blocks": {
         "block-status": "최근 블록 현황<br/><small>최근 256개의 블록의 난이도와 Uncle, Orphan 비율이 표시됩니다.</small>",

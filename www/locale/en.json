@@ -80,7 +80,13 @@
         "link-peer-monitor": "ESN Peer Monitoring",
         "link-ddengle": "DDengle Community",
         "support_nicehash": "Nicehash compatible pool",
-        "nicehash_desc": "You can rent hashing power on NiceHash and point it to our pool."
+        "nicehash_desc": "You can rent hashing power on NiceHash and point it to our pool.",
+        "algorithm": "Algorithm",
+        "phi": "Ethash(Dagger Hashimoto)",
+        "algorithm_desc": "ASIC resistant, Light client verifiability",
+        "blockreward": "Block reward",
+        "blocktime": "Avg. Block time",
+        "blocktime-value": "14.4 seconds"
 	},
 	"blocks": {
         "block-status": "Recent Block Status<br/><small>The difficulty of the last 256 blocks and the Uncle and Orphan ratios are displayed.</small>",

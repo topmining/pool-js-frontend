@@ -133,7 +133,7 @@
                         <span id="pool_fee_desc"></span>
                     </p>
                     <p>
-                        <span class="mr-2 font-weight-bold" data-i18n="dashboard.min_payout"></span> <span class="font-weight-bold"><span id="min_payout"></span></span><br/>
+                        <span class="mr-2 font-weight-bold" data-i18n="dashboard.min_payout"></span> <span class="font-weight-bold color-title align-middle"><span id="min_payout"></span></span><br/>
                         <span id="min_payout_desc"></span>
                     </p>
                     <p>
@@ -141,8 +141,18 @@
                         <span data-i18n="dashboard.payout_model_desc"></span>
                     </p>
                     <p>
-                        <span class="mr-2 font-weight-bold align-middle" data-i18n="dashboard.support_nicehash"></span> <img src="/images/nicehash_logo.png" width="80"/><br/>
+                        <span class="mr-2 font-weight-bold align-middle" data-i18n="dashboard.support_nicehash"></span> <img class="align-middle" src="/images/nicehash_logo.png" width="80"/><br/>
                         <span data-i18n="dashboard.nicehash_desc"></span>
+                    </p>
+                    <p>
+                        <span class="mr-2 font-weight-bold align-middle" data-i18n="dashboard.algorithm"></span> <span class="font-weight-bold color-title align-middle" data-i18n="dashboard.phi"></span><br/>
+                        <span data-i18n="dashboard.algorithm_desc"></span>
+                    </p>
+                    <p>
+                        <span class="mr-2 font-weight-bold align-middle" data-i18n="dashboard.blockreward"></span> <span class="font-weight-bold color-title align-middle" id="block_reward"></span><br/>
+                    </p>
+                    <p>
+                        <span class="mr-2 font-weight-bold align-middle" data-i18n="dashboard.blocktime"></span> <span class="font-weight-bold color-title align-middle" data-i18n="dashboard.blocktime-value"></span><br/>
                     </p>
                 </div>
             </div>
@@ -194,6 +204,9 @@ currentPage = {
         $("#pool_fee").text(poolFee);
         $("#min_payout").text(minPayout + " " + coinUnit);
 
+        $("#block_reward").text(blockReward + " " + coinUnit);
+
+        refreshStatsDashboard();
         refreshPoolDetail();
 
         $("#form_account").on("submit", function(event) {
@@ -214,6 +227,9 @@ currentPage = {
 
         reloadHost();
         callPrice();
+    },
+    refresh: function() {
+        refreshStatsDashboard();
     },
     changeLanguage: function(){
         refreshPoolDetail();
@@ -265,7 +281,8 @@ function callPriceCoin() {
     $("#tickerBTC").html(formatCurrency(esnToBtc.toFixed(8)));
 }
 
-function refreshStatsDashboard(stats) {
+function refreshStatsDashboard() {
+    var stats = poolStats;
     if(stats != null) {
         var hashRateString = formatHashrate(stats.hashrate, true);
         var minersTotal = formatCurrency(stats.minersTotal);
@@ -280,6 +297,8 @@ function refreshStatsDashboard(stats) {
         $("#difficulty").html(difficulty);
         $("#blockHeight").html(blockHeight);
         $("#lastBlock").html(lastBlockFound);
+
+        pageloadFinish();
     }
 }
 

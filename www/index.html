@@ -164,7 +164,7 @@ var blockHeight = 0;
 
 FontAwesomeConfig = { searchPseudoElements: true };
 
-function initLocale(localeCallback, pageCallback) {
+function initLocale(localeCallback) {
     i18next.use(i18nextXHRBackend).use(i18nextBrowserLanguageDetector).init({
         fallbackLng: 'en',
 		load: 'languageOnly',
@@ -182,15 +182,31 @@ function initLocale(localeCallback, pageCallback) {
         $('[data-toggle="tooltip"]').tooltip();
 
         if(localeCallback) localeCallback();
+    });
+}
 
-        if(pageCallback) pageCallback();
+function initLocaleBodayPanel(localeCallback) {
+    i18next.use(i18nextXHRBackend).use(i18nextBrowserLanguageDetector).init({
+        fallbackLng: 'en',
+		load: 'languageOnly',
+        backend: {
+            loadPath: '/locale/{{lng}}.json',
+            crossDomain: true
+        }
+    }, function(err, t) {
+        jqueryI18next.init(i18next, $);
+        date_messages = date_messages_string[i18next.language.substring(0, 2)];
+
+        $('#body-panel').localize();
+        $('[data-toggle="tooltip"]').tooltip();
+
+        if(localeCallback) localeCallback();
     });
 }
 
 function changeLng(lng) {
     i18next.changeLanguage(lng);
-    initLocale(null,
-        currentPage ? currentPage.changeLanguage : null);
+    initLocale(currentPage ? currentPage.changeLanguage : null);
 	$('.navbar-collapse').collapse('hide');
 }
 
@@ -229,9 +245,7 @@ function setCurrentMenu(menu) {
 }
 
 $(function(){
-    initLocale(null);
-
-	$(document).on('click', 'a[href="#"]', function(e){
+    $(document).on('click', 'a[href="#"]', function(e){
 		e.preventDefault();
 	});
 
@@ -242,11 +256,10 @@ $(function(){
     }
 
     pageName = page;
-    routePage(page, function() {
-        refreshStatsPost();
-    });
 
-    reloadStats();
+    initLocale(function() {
+        reloadStats();
+    });
 
     resizeFacebookIframe();
     setTimeout(resizeFacebookIframe, 500);
@@ -307,17 +320,18 @@ function refreshStats(stats) {
         blockHeight = stats.nodes[0].height;
 
         poolStats = stats;
-        refreshStatsPost();
+
+        if(currentPage == null) {
+            routePage(pageName);
+        }
+        else if(currentPage.refresh) {
+            currentPage.refresh();
+        }
     }
 }
 
-function refreshStatsPost() {
-    if(pageName == "dashboard" && currentPage)
-        refreshStatsDashboard(poolStats);
-}
-
-function routePage(page, loadedCallback) {
-    $('#page-body').html('');
+function routePage(page) {
+    $('#page-body').hide();
     $('#loading').show();
     $('#page-error').hide();
     if (ajaxPageLoading)
@@ -331,11 +345,8 @@ function routePage(page, loadedCallback) {
             cache: false,
             success: function (data) {
                 $('#page-body').html(data);
-                initLocale(function() {
-                    $('#loading').hide();
-                    $('#page-body').show();
+                initLocaleBodayPanel(function() {
                     currentPage.update();
-                    if (loadedCallback) loadedCallback();
                 });
             },
             error(request,status,error) {
@@ -351,6 +362,11 @@ function routePage(page, loadedCallback) {
         $('#loading').hide();
         showErrorMessage(errorNotFoundPage);
     }
+}
+
+function pageloadFinish() {
+    $('#loading').hide();
+    $('#page-body').show();
 }
 
 function showErrorMessage(code) {
