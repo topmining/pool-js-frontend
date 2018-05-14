@@ -10,7 +10,7 @@
         <div class="card-body">
             <div data-i18n="howto.mining.no-signup1"></div>
             <div data-i18n="howto.mining.no-signup2"></div>
-            <div><span data-i18n="howto.mining.make-wallet-pre"></span> <a href="#create-wallet" data-i18n="howto.mining.make-wallet"></a> <span data-i18n="howto.mining.make-wallet-post"></span></div>
+            <div><span data-i18n="howto.mining.make-wallet-pre"></span> <a href="javascript: gotoCreateWallet();" data-i18n="howto.mining.make-wallet"></a> <span data-i18n="howto.mining.make-wallet-post"></span></div>
             <div data-i18n="howto.mining.note-app"></div>
         </div>
     </div>
@@ -155,13 +155,13 @@
       <code>ethminer.exe -G -S esn-kor3.topmining.co.kr:8008 -SP 1 -O 0x2eb64b8ab13f0d7823158217d15ba310ed3d0e58.worker01:x</code><br/><br/>
     </p>
     <p>
-      <span data-i18n="howto.mining.check-sentence" id="create-wallet"></span><br/>
+      <span data-i18n="howto.mining.check-sentence"></span><br/>
     <span data-i18n="[html]howto.mining.ethminer.more"></span>
     </p>
         </div>
     </div>
 
-    <div class="card howto-card mb-2">
+    <div class="card howto-card mb-2" id="create-wallet">
         <div class="card-header">
             <span data-i18n="howto.wallet.title"></span>
         </div>
@@ -188,5 +188,13 @@ currentPage = {
     update: function(){
         pageloadFinish();
     }
+}
+
+function gotoCreateWallet() {
+    var scrollPosition = $("#create-wallet").offset().top - 130;
+
+    $("html, body").animate({
+    	scrollTop: scrollPosition
+    }, 200);
 }
 </script>
