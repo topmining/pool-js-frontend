@@ -100,17 +100,17 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <span id="kor1">Checking</span>
+                        <span id="kor1"><span class="badge-host badge-host-low" data-i18n="dashboard.status_low"></span></span>
                         <span>esn-kor1.topmining.co.kr:8008</span>
                         <span class="text-muted float-right" data-i18n="dashboard.korea"></span>
                     </li>
                     <li class="list-group-item">
-                        <span id="kor2">Checking</span>
+                        <span id="kor2"><span class="badge-host badge-host-low" data-i18n="dashboard.status_low"></span></span>
                         <span>esn-kor2.topmining.co.kr:8008</span>
                         <span class="text-muted float-right" data-i18n="dashboard.korea"></span>
                     </li>
                     <li class="list-group-item">
-                        <span id="kor3">Checking</span>
+                        <span id="kor3"><span class="badge-host badge-host-low" data-i18n="dashboard.status_low"></span></span>
                         <span>esn-kor3.topmining.co.kr:8008</span>
                         <span class="text-muted float-right" data-i18n="dashboard.korea"></span>
                     </li>
@@ -119,7 +119,7 @@
                             <small data-i18n="dashboard.nicehash_only"></small>
                             <span class="button-tooltip-small text-muted" data-toggle="tooltip" data-placement="top" data-i18n="[title]dashboard.nicehash_desc"><i class="fa fa-question-circle"></i></span>
                         </div>
-                        <span id="nicehash">Checking</span>
+                        <span id="nicehash"><span class="badge-host badge-host-low" data-i18n="dashboard.status_low"></span></span>
                         <span>esn-nicehash.topmining.co.kr:9008</span>
                         <span class="text-muted float-right" data-i18n="dashboard.korea"></span>
                     </li>
@@ -225,7 +225,9 @@ currentPage = {
             $("#account").val(account);
         }
 
-        reloadHost();
+        // 호스트 상태는 더 이상 조회하지 않음
+        // reloadHost();
+
         callPrice();
     },
     refresh: function() {
@@ -287,9 +289,10 @@ function refreshStatsDashboard() {
         var hashRateString = formatHashrate(stats.hashrate, true);
         var minersTotal = formatCurrency(stats.minersTotal);
         var lastBlockFound = formatPrettyDate(stats.stats.lastBlockFound * 1000, date_messages);
-        var blockHeight = formatCurrency(stats.nodes[0].height);
-        var difficulty = formatDifficulty(stats.nodes[0].difficulty);
-        var networkHash = formatHashrate(stats.nodes[0].difficulty / blockTime);
+        var blockHeight = formatCurrency(getBlockHeight(stats));
+        var diff = getNetworkDifficulty(stats);
+        var difficulty = formatDifficulty(diff);
+        var networkHash = formatHashrate(diff / blockTime);
 
         $("#poolHash").html(hashRateString);
         $("#minersTotal").html(minersTotal);

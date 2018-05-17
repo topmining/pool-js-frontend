@@ -195,6 +195,7 @@
             "note-app": "This article only introduces the most commonly used \"Claymore Dual Minor\" and \"Ether Miner\" programs.",
             "download": "Download",
             "windows": "(Windows)",
+            "linux": "(Linux)",
             "wallet-addr": "<YOUR_ADDRESS>",
             "worker-name": "<Worker_ID>",
             "example": "Example",

@@ -34,19 +34,19 @@
                             <img class="brand-typo" src="/images/logo-typo.png"/>
                         </div>
                         <div class="menu-item">
-                            <a class="active" href="/">
+                            <a id="portalEsn" class="active" href="/">
                                 <img class="align-middle" src="/images/logo-pool-esn-active.png" width="24" height="24"/>
                                 <span class="link-text align-middle" data-i18n="[html]common.esn-pool"></span>
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a href="http://clo-web.topmining.co.kr">
+                            <a id="portalClo" href="/">
                                 <img class="align-middle" src="/images/logo-pool-clo.png" width="24" height="24"/>
                                 <span class="link-text align-middle" data-i18n="[html]common.clo-pool"></span>
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a href="http://flm-web.topmining.co.kr">
+                            <a id="portalFlm" href="/">
                                 <img class="align-middle" src="/images/logo-pool-flm.png" width="24" height="24"/>
                                 <span class="link-text align-middle" data-i18n="[html]common.flm-pool"></span>
                             </a>
@@ -237,6 +237,10 @@ $(function(){
 		e.preventDefault();
 	});
 
+    $('#portalEsn').attr("href", portalLinkEsn);
+    $('#portalClo').attr("href", portalLinkClo);
+    $('#portalFlm').attr("href", portalLinkFlm);
+
     var page = "dashboard";
     var url = window.location.href;
     if(url.indexOf("/#/") > -1) {
@@ -263,9 +267,9 @@ $(function(){
 });
 
 function resizeFacebookIframe() {
-    var panel_left = $("#page-body").position().left;
-    var panel_width = parseInt($("#page-body").width());
-    var panel_right = panel_width + panel_left - 20;
+    var panel_left = $("#body-panel").position().left + $("#body-panel").offset().left;
+    var panel_width = parseInt($("#body-panel").width());
+    var panel_right = panel_width + panel_left + 10;
 
     var scr_width = $( window ).width();
 	var width = parseInt(scr_width - panel_right - 10);
@@ -274,7 +278,7 @@ function resizeFacebookIframe() {
 
     var float_facebook = $("#float-facebook");
 
-    if(width <= 280 || panel_width <= 0) {
+    if(width <= 280) {
         float_facebook.css('position', 'relative');
         float_facebook.css('top', '0');
         float_facebook.css('left', panel_left + "px");
@@ -303,19 +307,45 @@ function refreshStats(stats) {
         var immatureTotal = stats.immatureTotal + stats.candidatesTotal;
         $("#immature-blocks").html(immatureTotal);
 
-        networkHash = stats.nodes[0].difficulty / blockTime;
+        networkHash = getNetworkDifficulty(stats) / blockTime;
         totalShares = stats.stats.roundShares;
-        blockHeight = stats.nodes[0].height;
+        blockHeight = getBlockHeight(stats);
 
         poolStats = stats;
 
-        if(currentPage == null) {
+        if(currentPage == null && !ajaxPageLoading) {
             routePage(pageName);
         }
-        else if(currentPage.refresh) {
+        else if(currentPage && currentPage.refresh) {
             currentPage.refresh();
         }
     }
+}
+
+function getBlockHeight(stats) {
+    var maxHeight = 0;
+
+    for(var n in stats.nodes) {
+        if(maxHeight < stats.nodes[n].height) {
+            maxHeight = stats.nodes[n].height;
+        }
+    }
+
+    return maxHeight;
+}
+
+function getNetworkDifficulty(stats) {
+    var maxHeight = 0;
+    var maxN = 0;
+
+    for(var n in stats.nodes) {
+        if(maxHeight < stats.nodes[n].height) {
+            maxHeight = stats.nodes[n].height;
+            maxN = n;
+        }
+    }
+
+    return stats.nodes[maxN].difficulty;
 }
 
 function routePage(page) {
@@ -359,6 +389,7 @@ function pageloadFinish() {
 }
 
 function showErrorMessage(code) {
+    $('#loading').hide();
     var pageError = $('#page-error');
 
     pageError.show();

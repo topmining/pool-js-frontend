@@ -14,3 +14,7 @@ var chartWorkerUrl = "http://esn-chart.topmining.co.kr:8181/miner_chart.php?acco
 var chartPaymentUrl = "http://esn-chart.topmining.co.kr:8181/payment_chart.php?account=";
 
 var apiHostUserUrl = "http://esn.topmining.co.kr/api/accounts/";
+
+var portalLinkEsn = "http://esn-web.topmining.co.kr";
+var portalLinkClo = "http://clo-web.topmining.co.kr";
+var portalLinkFlm = "http://flm-web.topmining.co.kr";
